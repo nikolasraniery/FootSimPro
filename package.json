@@ -4,14 +4,14 @@
   "scripts": {
   "dev": "next dev",
   "build": "next build",
-  "start": "tsx start.ts",
+  "start": "npm run db:seed && next dev",
   "db:seed": "tsx src/backend/seed/seed.ts",
   "lint": "next lint"
 },
   "type": "module",
   "dependencies": {
     "express": "^4.18.2",
-    "next": "^16.1.6",
+    "next": "15.1.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "sequelize": "^6.37.7",

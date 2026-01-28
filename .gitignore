@@ -4,3 +4,4 @@ out/
 build/
 *.sqlite
 .env
+package-lock.json
