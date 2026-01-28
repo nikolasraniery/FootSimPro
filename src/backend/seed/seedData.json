@@ -5,11 +5,33 @@
     "league": "Série A",
     "budget": 60000000,
     "players": [
-      { "name": "John", "age": 29, "position": "GOL", "skill": 78 },
-      { "name": "Alexander Barboza", "age": 30, "position": "ZAG", "skill": 79 },
-      { "name": "Thiago Almada", "age": 24, "position": "MEI", "skill": 84 },
-      { "name": "Luiz Henrique", "age": 25, "position": "ATA", "skill": 83 }
-    ]
+      {
+        "name": "John",
+        "age": 29,
+        "position": "GOL",
+        "skill": 78
+      },
+      {
+        "name": "Alexander Barboza",
+        "age": 30,
+        "position": "ZAG",
+        "skill": 79
+      },
+      {
+        "name": "Thiago Almada",
+        "age": 24,
+        "position": "MEI",
+        "skill": 84
+      },
+      {
+        "name": "Luiz Henrique",
+        "age": 25,
+        "position": "ATA",
+        "skill": 83
+      }
+    ],
+    "divisionName": "Brasileirão Série A",
+    "divisionId": 1
   },
   {
     "name": "Palmeiras",
@@ -17,11 +39,33 @@
     "league": "Série A",
     "budget": 55000000,
     "players": [
-      { "name": "Weverton", "age": 38, "position": "GOL", "skill": 81 },
-      { "name": "Gustavo Gómez", "age": 32, "position": "ZAG", "skill": 82 },
-      { "name": "Raphael Veiga", "age": 30, "position": "MEI", "skill": 82 },
-      { "name": "Estêvão", "age": 18, "position": "ATA", "skill": 80 }
-    ]
+      {
+        "name": "Weverton",
+        "age": 38,
+        "position": "GOL",
+        "skill": 81
+      },
+      {
+        "name": "Gustavo Gómez",
+        "age": 32,
+        "position": "ZAG",
+        "skill": 82
+      },
+      {
+        "name": "Raphael Veiga",
+        "age": 30,
+        "position": "MEI",
+        "skill": 82
+      },
+      {
+        "name": "Estêvão",
+        "age": 18,
+        "position": "ATA",
+        "skill": 80
+      }
+    ],
+    "divisionName": "Brasileirão Série A",
+    "divisionId": 1
   },
   {
     "name": "Flamengo",
@@ -29,11 +73,33 @@
     "league": "Série A",
     "budget": 70000000,
     "players": [
-      { "name": "Rossi", "age": 30, "position": "GOL", "skill": 79 },
-      { "name": "Léo Ortiz", "age": 29, "position": "ZAG", "skill": 80 },
-      { "name": "De Arrascaeta", "age": 31, "position": "MEI", "skill": 83 },
-      { "name": "Gerson", "age": 28, "position": "MEI", "skill": 81 }
-    ]
+      {
+        "name": "Rossi",
+        "age": 30,
+        "position": "GOL",
+        "skill": 79
+      },
+      {
+        "name": "Léo Ortiz",
+        "age": 29,
+        "position": "ZAG",
+        "skill": 80
+      },
+      {
+        "name": "De Arrascaeta",
+        "age": 31,
+        "position": "MEI",
+        "skill": 83
+      },
+      {
+        "name": "Gerson",
+        "age": 28,
+        "position": "MEI",
+        "skill": 81
+      }
+    ],
+    "divisionName": "Brasileirão Série A",
+    "divisionId": 1
   },
   {
     "name": "Santos",
@@ -41,11 +107,33 @@
     "league": "Série B",
     "budget": 25000000,
     "players": [
-      { "name": "João Paulo", "age": 30, "position": "GOL", "skill": 77 },
-      { "name": "Gil", "age": 38, "position": "ZAG", "skill": 75 },
-      { "name": "Diego Pituca", "age": 33, "position": "VOL", "skill": 76 },
-      { "name": "Guilherme", "age": 30, "position": "ATA", "skill": 75 }
-    ]
+      {
+        "name": "João Paulo",
+        "age": 30,
+        "position": "GOL",
+        "skill": 77
+      },
+      {
+        "name": "Gil",
+        "age": 38,
+        "position": "ZAG",
+        "skill": 75
+      },
+      {
+        "name": "Diego Pituca",
+        "age": 33,
+        "position": "VOL",
+        "skill": 76
+      },
+      {
+        "name": "Guilherme",
+        "age": 30,
+        "position": "ATA",
+        "skill": 75
+      }
+    ],
+    "divisionName": "Brasileirão Série B",
+    "divisionId": 2
   },
   {
     "name": "Sport Recife",
@@ -53,9 +141,26 @@
     "league": "Série B",
     "budget": 15000000,
     "players": [
-      { "name": "Caíque França", "age": 30, "position": "GOL", "skill": 73 },
-      { "name": "Lucas Lima", "age": 35, "position": "MEI", "skill": 74 },
-      { "name": "Gustavo Coutinho", "age": 27, "position": "ATA", "skill": 72 }
-    ]
+      {
+        "name": "Caíque França",
+        "age": 30,
+        "position": "GOL",
+        "skill": 73
+      },
+      {
+        "name": "Lucas Lima",
+        "age": 35,
+        "position": "MEI",
+        "skill": 74
+      },
+      {
+        "name": "Gustavo Coutinho",
+        "age": 27,
+        "position": "ATA",
+        "skill": 72
+      }
+    ],
+    "divisionName": "Brasileirão Série B",
+    "divisionId": 2
   }
 ]

@@ -1,5 +1,5 @@
 import sequelize from '../config/database';
-import Club from './Club';
+import { Club } from './Club';
 import Player from './Player';
 import Save from './Save';
 
@@ -34,7 +34,7 @@ export const initDatabase = async (force = false) => {
     console.log('✅ Conexão com SQLite estabelecida com sucesso.');
     
     // sync({ force: true }) recria as tabelas (cuidado: apaga os dados!)
-    await sequelize.sync({ force });
+    await sequelize.sync({ force: true });
     console.log('✅ Tabelas sincronizadas e associações configuradas.');
   } catch (error) {
     console.error('❌ Erro ao inicializar o banco de dados:', error);

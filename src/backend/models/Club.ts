@@ -1,5 +1,5 @@
 import { Model, DataTypes, Optional } from "sequelize";
-import sequelize from "../config/database";
+import { sequelize } from "../config/database";
 
 interface ClubAttibutes {
   id: number;
@@ -10,14 +10,15 @@ interface ClubAttibutes {
   reputation: number;
   stadiumName?: string;
   logoUrl?: string;
+  divisionName: string;
+  divisionId: number;
 }
 
-interface ClubCreationAttributes extends Optional<ClubAttibutes, "id"> {}
+interface ClubCreationAttributes extends Optional<ClubAttibutes, "id"> { }
 
-class Club
+export class Club
   extends Model<ClubAttibutes, ClubCreationAttributes>
-  implements ClubAttibutes
-{
+  implements ClubAttibutes {
   public id!: number;
   public name!: string;
   public country!: string;
@@ -26,6 +27,8 @@ class Club
   public reputation!: number;
   public stadiumName?: string;
   public logoUrl?: string;
+  public divisionName: string;
+  public divisionId: number;
 }
 
 Club.init({
@@ -60,6 +63,10 @@ Club.init({
   logoUrl: {
     type: DataTypes.STRING,
   },
+  divisionName: {
+    type: DataTypes.STRING,
+  },
+  divisionId: {
+    type: DataTypes.INTEGER
+  }
 }, { sequelize, modelName: 'club' });
-
-export default Club;

@@ -1,16 +1,17 @@
-import { Sequelize } from "sequelize";
-import path from "path";
+import { Sequelize } from 'sequelize';
+import path from 'path';
 
-const dbPath = path.resolve(process.cwd(), "database.sqlite");
+// Evita abrir múltiplas conexões em desenvolvimento
+const globalForSequelize = global as unknown as { sequelize: Sequelize };
 
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: dbPath,
-  logging: false,
-  define: {
-    timestamps: true,
-    underscored: true,
-  },
-});
+export const sequelize =
+  globalForSequelize.sequelize ||
+  new Sequelize({
+    dialect: 'sqlite',
+    storage: path.join(process.cwd(), 'database.sqlite'),
+    logging: console.log,
+  });
+
+if (process.env.NODE_ENV !== 'production') globalForSequelize.sequelize = sequelize;
 
 export default sequelize;
