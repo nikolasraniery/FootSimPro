@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Brasfoot Pro - Novo Jogo</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Iniciar Nova Carreira</h1>
+
+      <form id="gameForm">
+        <section>
+          <label>Nome do Técnico:</label>
+          <input
+            type="text"
+            id="managerName"
+            required
+            placeholder="Ex: Abel Ferreira"
+          />
+        </section>
+
+        <section>
+          <label>Nome do Save:</label>
+          <input
+            type="text"
+            id="saveName"
+            required
+            placeholder="Ex: Minha Jornada"
+          />
+        </section>
+
+        <hr />
+
+        <section>
+          <label>Tipo de Início:</label>
+          <select id="startType">
+            <option value="existing">Escolher Clube Existente</option>
+            <option value="new">Criar Clube do Zero</option>
+          </select>
+        </section>
+
+        <div id="existingClubSection">
+          <label>Selecione o Clube:</label>
+          <select id="clubSelect">
+            <option value="1">Botafogo</option>
+            <option value="2">Palmeiras</option>
+            <option value="3">Flamengo</option>
+          </select>
+        </div>
+
+        <div id="newClubSection" style="display: none">
+          <h3>Dados do Novo Clube</h3>
+          <input type="text" id="newClubName" placeholder="Nome do Clube" />
+          <input
+            type="text"
+            id="newClubStadium"
+            placeholder="Nome do Estádio"
+          />
+          <select id="newClubLeague">
+            <option value="Série A">Série A</option>
+            <option value="Série B">Série B</option>
+          </select>
+        </div>
+
+        <button type="submit" style="margin-top: 20px">Iniciar Jogo</button>
+      </form>
+    </div>
+
+    <script>
+      // Função para carregar os clubes do banco de dados
+      async function loadClubs() {
+        const clubSelect = document.getElementById('clubSelect');
+
+        try {
+          const response = await fetch('/api/clubes');
+          const club = await response.json();
+
+          // Limpa as opções atuais
+          clubSelect.innerHTML = '';
+
+          // Adiciona cada clube vindo do banco
+          club.forEach((club) => {
+            const option = document.createElement('option');
+            option.value = club.id;
+            option.textContent = club.name;
+            clubSelect.appendChild(option);
+          });
+        } catch (error) {
+          console.error('Erro ao buscar clubes:', error);
+        }
+      }
+
+      // Chama a função assim que a página abre
+      window.onload = loadClubs;
+
+      const startType = document.getElementById('startType');
+      const existingSection = document.getElementById('existingClubSection');
+      const newSection = document.getElementById('newClubSection');
+
+      // Alterna entre criar e escolher
+      startType.addEventListener('change', (e) => {
+        if (e.target.value === 'new') {
+          existingSection.style.display = 'none';
+          newSection.style.display = 'block';
+        } else {
+          existingSection.style.display = 'block';
+          newSection.style.display = 'none';
+        }
+      });
+
+      // Envio do formulário
+      document
+        .getElementById('gameForm')
+        .addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const data = {
+            managerName: document.getElementById('managerName').value,
+            saveName: document.getElementById('saveName').value,
+            isNewClub: startType.value === 'new',
+            clubId: document.getElementById('clubSelect').value,
+            clubData: {
+              name: document.getElementById('newClubName').value,
+              stadiumName: document.getElementById('newClubStadium').value,
+              league: document.getElementById('newClubLeague').value,
+              country: 'Brasil',
+            },
+          };
+
+          const response = await fetch('/start-game', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+
+          const result = await response.json();
+          alert(result.message || result.error);
+        });
+    </script>
+  </body>
+</html>
