@@ -8,6 +8,24 @@ export function useNewGameForm() {
     const [selectedCountry, setSelectedCountry] = useState('1');
     const [selectedDivision, setSelectedDivision] = useState('');
     const [selectedClub, setSelectedClub] = useState('');
+    const [managerName, setManagerName] = useState('');
+
+    const createSave = async () => {
+        if (!selectedClub) throw new Error("Clube não selecionado");
+        if (managerName === '') throw new Error("Nome do treinador é obrigatório");
+
+        const response = await fetch('/api/saves', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                clubId: selectedClub,
+                managerName
+            }),
+        });
+        if (!response.ok) throw new Error('Falha ao criar o save na API');
+
+        return await response.json();
+    }
 
     useEffect(() => {
         if (selectedCountry === '1') {
@@ -40,6 +58,8 @@ export function useNewGameForm() {
         countries, divisions, clubs,
         selectedCountry, setSelectedCountry,
         selectedDivision, setSelectedDivision,
-        selectedClub, setSelectedClub
+        selectedClub, setSelectedClub,
+        managerName, setManagerName,
+        createSave
     };
 }

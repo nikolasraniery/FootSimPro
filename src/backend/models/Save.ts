@@ -7,6 +7,7 @@ interface SaveAttributes {
   managerName: string;
   currentDate: Date;
   clubId: number;
+  balance: number;
 }
 
 interface SaveCreationAttributes extends Optional<
@@ -23,6 +24,7 @@ class Save
   public managerName!: string;
   public currentDate!: Date;
   public clubId!: number;
+  public balance: number;
 }
 
 Save.init(
@@ -48,6 +50,9 @@ Save.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    balance: {
+      type: DataTypes.FLOAT,
+    }
   },
   {
     sequelize,

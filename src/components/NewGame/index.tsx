@@ -2,24 +2,50 @@
 import * as S from './NewGame.styles';
 import { Button } from '../Home/Home.styles';
 import { useNewGameForm } from '../../hooks/useNewGameForm';
+import { useRouter } from 'next/navigation';
 
 interface NewGameProps {
     onBack: () => void;
 }
 
 export default function NewGame({ onBack }: NewGameProps) {
+
+    const router = useRouter();
+
     const {
         countries, divisions, clubs,
         selectedCountry, setSelectedCountry,
         selectedDivision, setSelectedDivision,
-        selectedClub, setSelectedClub
+        selectedClub, setSelectedClub,
+        managerName, setManagerName,
+        createSave
     } = useNewGameForm();
+
+    const handleStartGame = async () => {
+        try {
+            const newSave = await createSave();
+            router.push(`/game/${newSave.id}`);
+        } catch (error) {
+            console.error(error);
+            alert("Não foi possível iniciar o jogo. Verifique o console do servidor.");
+        }
+    };
 
     return (
         <S.Container>
             <S.WelcomeText>
                 <h2>Configurar Carreira</h2>
             </S.WelcomeText>
+
+            <S.FieldGroup>
+                <label>Nome do técnico</label>
+                <input
+                    type='text'
+                    placeholder='Digite seu nome'
+                    value={managerName}
+                    onChange={(e) => setManagerName(e.target.value)}
+                />
+            </S.FieldGroup>
 
             <S.FieldGroup>
                 <label>País</label>
@@ -48,7 +74,7 @@ export default function NewGame({ onBack }: NewGameProps) {
                     disabled={!selectedDivision}
                 >
                     <option value="">Selecione um clube</option>
-                    {Array.isArray(clubs) && clubs.map((c: any) => (
+                    {clubs.map(c => (
                         <option key={c.id} value={c.id}>{c.name}</option>
                     ))}
                 </select>
@@ -56,7 +82,7 @@ export default function NewGame({ onBack }: NewGameProps) {
 
             <S.ButtonGroup>
                 <Button $variant="secondary" onClick={onBack}>VOLTAR</Button>
-                <Button disabled={!selectedClub}>INICIAR</Button>
+                <Button disabled={!selectedClub} onClick={handleStartGame}>INICIAR</Button>
             </S.ButtonGroup>
         </S.Container>
     );
